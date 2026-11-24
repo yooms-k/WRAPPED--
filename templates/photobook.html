@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gallery</title>
+<link rel="stylesheet" href="../css/photobook.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700&family=Young+Serif&display=swap" rel="stylesheet">
+<script type="importmap">
+    {
+    "imports": {
+        "animejs": "https://cdn.jsdelivr.net/npm/animejs@4/+esm"
+    }
+    }
+  </script>
+<script type="module" src="../js/photobook.js"></script>
+
+</head>
+
+<body>
+    <!-- 
+    <div class="gallery-container">
+        <h1>--</h1>
+
+
+        <div class="photo-grid">
+            <div class="grid-item"><img src="../images/cats/DSC03419.JPG" alt="cute cats"></div>
+            <div class="grid-item"><img src="../images/cats/DSC03420.JPG" alt="cute cats"></div>
+            <div class="grid-item"><img src="../images/cats/DSC03456.JPG" alt="cute cats"></div>
+            <div class="grid-item"><img src="../images/cats/DSC03457.JPG" alt="cute cats"></div>
+        </div>
+    </div>
+
+    <div class="modal" id="photoModal">
+        <span class="close-btn" id="closeBtn">&times</span>
+        <img class="modal-content" id="modalImg" src="" alt="expanded cats">
+    </div>
+
+    -->
+
+    <h1>GALLERY ! </h1>
+    <div class="folder-container">
+        
+        <div class="folder" data-folder="fuji">
+            <!-- need to make an img elemnent for each thumbnail -->
+            <img id="heroimage" src="../images/frames/frame-13.JPG" alt="13">
+
+        </div>
+        <div class="folder" data-folder="mstoh_cats">
+            <img src="../images/cats/DSC03419.JPG" alt="mstoh_cats">
+
+        </div>
+    </div>
+
+    <div class="modal" id="folderModal">
+        <span class="close-btn" id="folderBtn">&times</span>
+        <img class="modal-content" id="folderImg" src="" alt="folder image">
+        <span class="next-btn" id="nextBtn">&Rarr;</span>
+        <span class="prev-btn" id="prevBtn">&Larr;</span>
+        <span class="counter" id="imgcounter">--</span>
+    </div>
+
+
+</body>
+<footer><a href="/">back!</a></footer>
+
+</html>

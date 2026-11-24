@@ -1,0 +1,247 @@
+  :root {
+    --sapphire: #72b0ab;
+    --arctic: #bcdddc;
+    --lace: #ffedd1;
+    --bubblegum: #fdc1b4;
+    --ballet: #fe9179;
+    --sage: #cfb97e;
+    --pistachio: #b89d47;
+    --spruce: #355e58;
+    --peacock: #053229;
+
+    --ink: #23332f;             /* main text                           */
+    --ink-soft: #4f635d;        /* descriptions                        */
+    --accent: #b5482f;          /* links + focus ring                  */
+
+    --font-display: "Young Serif", Georgia, serif;
+    --font-body: "Karla", system-ui, sans-serif;
+  }
+
+
+
+  * {
+    box-sizing: border-box;
+    margin: 0; 
+    padding: 0;
+  }
+
+  body {
+    font-family: "Google Sans", sans-serif; 
+    background-color: #2b2b2b;
+    padding: 4rem;
+ }
+
+ .gallery-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000000;
+ }
+
+ .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px; 
+    max-width: 1200px;
+    margin: 0 auto;
+ }
+
+ .grid-item {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    cursor: pointer;
+    height: 200px;
+ }
+
+ .grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /*prevents stretching and squishing*/
+    transition: transform 0.3s ease;
+ }
+
+ .grid-item:hover img {
+    transform: scale(1.50);
+ }
+
+ .modal {
+    display: none;
+    position: fixed; 
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--sapphire);
+    justify-content: center;
+    align-items: center;
+ }
+
+ .modal-content {
+    max-width: 85%;
+    max-height: 85%;
+    border-radius: 4px;
+    animation: zoomIn 0.3s ease;
+ }
+
+ .close-btn {
+    position: absolute;
+    top: 20px; 
+    right: 35px;
+    color: var(--ballet);
+    font-size: 40px; 
+    font-weight: bold;
+    cursor: pointer;
+ }
+
+/* =========================================================
+   1. THE FOLDER GRID
+   ========================================================= */
+
+.folder-container {
+  display: grid;
+  /* "Make as many columns as fit, each at least 200px wide, and share
+     any leftover space equally." Resize the window and the grid reflows
+     by itself, with no media queries needed. */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+ h1 {
+   color: var(--accent);
+   text-align: center;
+}
+
+
+/* =========================================================
+   2. ONE FOLDER CARD
+   ========================================================= */
+
+.folder {
+  position: relative;        /* so the tab (::before) can be placed against it */
+  aspect-ratio: 4 / 3;       /* fixes the card's shape no matter the photo's size */
+  border-radius: 0 0.5rem 0.5rem 0.5rem;  /* square top-left corner, where the tab is */
+  background: var(--sage, #cfb97e);
+  cursor: pointer;           /* the hand cursor tells people it's clickable */
+  
+}
+
+/* The little tab on top that makes it look like a folder.
+   ::before creates an extra decorative box without any extra HTML. */
+.folder::before {
+  content: "";               /* a ::before box needs content, even if empty */
+  position: absolute;
+  aspect-ratio: 4/3;
+
+  background: var(--sage, #3a3a3a);
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.folder:hover {
+  transform: translateY(-4px) scale(1.05); 
+  z-index: 1;/* a small lift on hover */
+}
+
+/* The cover photo: the FIRST img directly inside the folder.
+   The > means "direct child only", so it doesn't touch the hidden items below. */
+.folder > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* fill the card, cropping instead of squashing */
+  border-radius: inherit;    /* copy the card's rounded corners */
+  display: block;            /* removes the small gap images leave under them */
+}
+
+/* The folder-items only hold the full list of photos for the JavaScript.
+   Nobody needs to see them in the grid, so hide them. They stay in the
+   HTML, so your JS can still read their src and alt. */
+.folder-item {
+  display: none;
+}
+
+
+/* =========================================================
+   3. THE MODAL (full-screen overlay)
+   ========================================================= */
+
+.modal {
+  display: none;             /* hidden until your JS sets it to "flex" */
+  position: fixed;           /* fixed = relative to the screen, not the page */
+  inset: 0;                  /* shorthand for top/right/bottom/left: 0 = cover everything */
+  z-index: 1000;             /* sit above all other content */
+  background: rgba(95, 95, 95, 0.92);   /* dark translucent tint */
+
+  /* These work because JS sets display: "flex". If it set "block"
+     instead, these two lines would be ignored. */
+  align-items: center;       /* vertical centre */
+  justify-content: center;   /* horizontal centre */
+}
+
+/* The big photo. */
+.modal-content {
+  max-width: 85vw;           /* never wider than 85% of the screen... */
+  max-height: 85vh;          /* ...or taller than 85% of it */
+  object-fit: contain;       /* show the WHOLE photo, no cropping */
+  border-radius: 0.25rem;
+}
+
+
+/* =========================================================
+   4. THE THREE BUTTONS
+   ========================================================= */
+
+/* Styles shared by all three, so we write them once. */
+.close-btn,
+.next-btn,
+.prev-btn {
+  position: absolute;        /* placed against the modal (a fixed box counts as positioned) */
+  color: white;
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;         /* stops text getting highlighted on fast double-clicks */
+  padding: 0.5rem 1rem;
+  transition: opacity 0.2s ease;
+  opacity: 0.7;
+}
+
+.close-btn:hover,
+.next-btn:hover,
+.prev-btn:hover {
+  opacity: 1;
+}
+
+.close-btn {
+  top: 1rem;
+  right: 1.5rem;
+}
+
+/* Vertically centre the arrows: push down 50%, then pull back up by half
+   the button's own height with translateY(-50%). */
+.next-btn,
+.prev-btn {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.prev-btn { left: 1rem; }
+.next-btn { right: 1rem; }
+
+
+.counter {
+   position: absolute;
+   color: #000000;
+   font-size: 1rem;
+   padding: auto;
+   top: 10%; 
+}
+
+
+ @keyframes zoomIn {
+    from { transform: scale(0.7); opacity: 0;}
+    to { transform: scale(1); opacity: 1;}
+ }
+
+ 

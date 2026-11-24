@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>testing</title>
+<link rel="stylesheet" href="../css/1111.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700&family=Young+Serif&display=swap" rel="stylesheet">
+<script type="importmap">
+    {
+    "imports": {
+        "animejs": "https://cdn.jsdelivr.net/npm/animejs@4/+esm"
+    }
+    }
+  </script>
+<script type="module" src="../js/1111.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+        <a href="../templates/1111.html">
+            <img src="../images/realyooms.svg" alt="Yooms logo">
+        </a>
+        </div>
+        <span>YOOMS CINEMA 映画館　 </span>
+        <audio id="header_audio" src="../audio/kneesocks/realkneesocksprogress.mp3"></audio>
+        <button class="playbtn" data-audio="header_audio">PLAY</button>
+        
+        <div id="back">
+            <a href="/">BACK</a>
+        </div>
+    </header>
+    <div class="hero">
+        <div class="hero-content">
+            should i have text here? okay, maybe no text
+            <img id="heroimg" alt="photo loading" src="../images/heroposters/edited/フィルム フェスタ.png">
+        </div>
+    </div>
+
+    <h1>
+        NOW SHOWING　上映中:
+    </h1>
+
+    <div class="poster-container">
+
+        <div class="folder" data-folder="fuji">
+            <img src="../images/demo/1.png">
+
+        </div>
+        <div class="folder" data-folder="mstoh_cats">
+            <img src="../images/demo/2.png">
+
+        </div>
+        <div class="folder" data-folder="fukuoka">
+            <img src="../images/demo/3.png">
+
+        </div>
+        <div class="folder" data-folder="fukuoka">
+            <img src="../images/demo/4.png">
+        </div>
+        <div class="folder" data-folder="fukuoka">
+            <img src="../images/demo/5.png">
+        </div>
+        <div class="folder" data-folder="fukuoka">
+            <img src="../images/demo/6.png">
+        </div>
+        <div class="folder" data-folder="fukuoka">
+            <img src="../images/demo/8.png">
+        </div>
+
+    </div>
+
+    <!--MODAL -->
+    <div class="modal" id="folderModal">
+
+        <div class="modal-content">
+
+            <div class="photo-box">
+                <img id="folderImg" src="" alt="">
+            </div>
+            <!--modal buttons-->
+
+            <div class="side-panel">
+                <div class="buttonbar">
+
+                    <button class="modalbtn" id="prevBtn">previous</button>
+                    <button class="modalbtn" id="nextBtn">next</button>
+                    <button class="modalbtn" id="folderBtn">close</button>
+                    <span class="counter" id="imgcounter">--</span>
+                </div>
+
+                <div class="desc-box">
+                    <img id="descImg" class="desc-placeholder" src="" alt="">
+                    <p id="folderDesc"></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <footer>
+        
+        <a href="../templates/1111.html">
+            <img src="../images/realyooms.svg" alt="yooms logo">
+        </a>
+        the end! 
+        
+
+    </footer>
+
+</body>
+
+</html>

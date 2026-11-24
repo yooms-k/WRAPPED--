@@ -1,0 +1,29 @@
+
+.centered {
+    text-align: center;
+}
+
+.square {
+    color: aqua;
+    width: 4rem;
+    height: 4rem;
+    background: red;
+    border-radius: 0.5rem;
+    border-color: aquamarine;
+}
+
+#animation .text-xl {
+  font-size: 1.5rem;
+  color: currentColor;
+  letter-spacing: 0.06em;
+}
+
+.row{
+    display: flex;
+}
+
+.wall {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

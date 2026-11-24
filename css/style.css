@@ -1,0 +1,154 @@
+
+/*body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  min-height: 100dvh;
+  padding: 2rem;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  text-rendering: optimizeSpeed;
+}
+
+main {
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url('../images/mtfuji.JPG');
+  background-size: cover;
+}
+*/
+/*root targets the whole document: the html element basically */
+
+:root {
+  --ink: #1a1a1a;
+  --paper: #f7f4ee;
+  --accent: #398e9bd4;
+  --font-primary: Georgia, 'Times New Roman', serif;
+  --font-secondary: 'Courier New', monospace;
+  --font-test: Arial, sans-serif, Helvetica 
+}
+
+* { box-sizing: border-box; }
+
+/*testing opening sequence*/
+
+
+  /* Optional: a small starting dot shown before the reveal fires,
+     so the user sees where the circle expands from */
+
+/*
+#seed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  transition: opacity 0.4s ease 0.2s;
+  pointer-events: none;
+  z-index: 10;
+}
+
+  #seed.hide { opacity: 0; }
+*/
+
+  /* The whole page content sits behind a clip-path circle.
+    We animate the circle's radius from tiny to huge to "reveal" everything. */
+#site {
+  clip-path: circle(0% at 50% 50%);
+  -webkit-clip-path: circle(0% at 50% 50%);
+  transition: clip-path 1.4s cubic-bezier(0.65, 0, 0.35, 1);
+  min-height: 100vh;
+}
+
+#site.revealed {
+  clip-path: circle(150% at 50% 50%);
+  -webkit-clip-path: circle(150% at 50% 50%);
+}
+
+
+
+
+/*TESTING HERO STYLE 
+
+the margin is bc there's padding added to <body> by default*/
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  background: var(--accent);
+  color: var(--ink);
+}
+.hero {
+  background-image: url('../images/mtfuji.JPG');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 8vw;
+  /*max width removed so that image can span the whole page*/
+}
+
+.hero-content {
+  max-width: 900px;
+  /* text/content constrained to a readable width, regardless of .hero's size */
+}
+
+.audio button{
+  font-family: var(--font-secondary);
+}
+
+.eyebrow {
+  font-family: var(--font-secondary);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--paper);
+  margin-bottom: 1rem;
+}
+h1 {
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  line-height: 1.05;
+  margin: 0 0 1.2rem 0;
+  font-weight: 400;
+}
+.tagline {
+  font-size: 1.2rem;
+  max-width: 40ch;
+  line-height: 1.5;
+  color: #444;
+  margin-bottom: 2.5rem;
+}
+
+.cta {
+  display: inline-flex;
+  gap: 1rem;
+}
+.cta a {
+  font-family: var(--font-primary);
+  
+  text-decoration: none;
+  color: var(--paper);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+.cta a:hover { opacity: 0.6; }
+
+
+footer {
+  padding: 2rem 8vw;
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  color: var(--paper);
+}

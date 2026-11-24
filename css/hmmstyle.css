@@ -1,0 +1,101 @@
+:root {
+  --ink: #1a1a1a;
+  --paper: #f7f4ee;
+  --accent: #398e9bd4;
+  --font-primary: Georgia, 'Times New Roman', serif;
+  --font-secondary: 'Courier New', monospace;
+  --font-test: Arial, sans-serif, Helvetica 
+}
+
+* { box-sizing: border-box; }
+/*IMAGES*/
+.constructtext {
+  align-items: flex-start;
+  padding: 8vw;
+  max-width: 900px;
+}
+
+.wall_buttons {
+  background-image: url('../images/charmera.jpg');
+  background-size: contain;
+  background-position: center;
+  
+  padding: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /*centers each .row horizontally within .wall_buttons */
+  gap: 1rem; /* space between rows (vertically) */
+}
+
+.row {
+  display: flex;
+  justify-content: center; /*centers buttons horizontally within each row */
+  gap: 1rem; /*space between buttons in row */
+}
+
+.playbtn {
+  font-family: var(--font-primary);
+}
+
+
+/*ANIMATION CSS*/
+.wall {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.centered {
+    text-align: center;
+}
+
+.square {
+    color: aqua;
+    width: 4rem;
+    height: 4rem;
+    background: red;
+    border-radius: 0.5rem;
+    border-color: rgb(255, 255, 255);
+}
+
+.circle {
+  background-color: cornflowerblue;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid gold;
+}
+
+/*TESTING*/
+
+.section {
+  height: 50vh;
+  font-size: large;
+}
+
+#section-1 {
+  background-color: rgb(186, 42, 42);
+}
+#section-2 {
+  background-color: rgb(23, 153, 200);
+}
+#section-3 {
+  background-color: rgb(45, 111, 51);
+}
+#section-4 {
+  background-color: rgb(126, 170, 31);
+}
+#section-5 {
+  background-color: rgb(173, 58, 164);
+}
+
+.text-animate {
+  color: white;
+}

@@ -1,0 +1,20 @@
+.scroll-container {
+  position: relative;
+  height: 400vh;
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage canvas {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 1 / 1;
+}

@@ -1,0 +1,274 @@
+:root {
+    --sapphire: #72b0ab;
+    --arctic: #bcdddc;
+    --lace: #ffedd1;
+    --bubblegum: #fdc1b4;
+    --ballet: #fe9179;
+    --sage: #cfb97e;
+    --pistachio: #b89d47;
+    --spruce: #355e58;
+    --peacock: #053229;
+
+    --ink: black;             /* main text                           */
+    --ink-soft: #4f635d;        /* descriptions                        */
+    --accent: #b5482f;          /* links + focus ring                  */
+
+    --font-display: "Young Serif", Georgia, serif;
+    --font-body: "Karla", system-ui, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+/* LOADING SVG PATH  */
+
+body.loading { overflow: hidden; }   /* stops scrolling during the intro */
+
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #111;                  /* your page background colour */
+  display: grid;
+  place-items: center;
+}
+
+.tracelogo { 
+    width: 300px; 
+    fill: #111;
+}
+
+
+.logo { opacity: 0; }    
+
+/* hidden until the big logo lands on it */
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--ink);
+    background-color: black;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1rem;
+    background-color: black;
+}
+
+header img {
+    height: 3rem;
+    width: auto;
+    display: block;
+}
+
+/*heaeder back button*/
+#back {
+    margin-left: auto;
+    font-size: x-small;
+}
+
+.hero { 
+    margin-bottom: 40px;  
+    background-color: black;
+
+}
+
+
+.hero-content {
+    width: 100%;
+    height: 100%;           /* fill the hero's 80vh */
+}
+
+.hero-content img {
+    display: block;         /* removes the small gap under inline images */
+    width: 100%;
+    height: auto;           /* fill the box... */
+    object-fit: contain;      /* ...cropping instead of squashing */
+    object-position: center;
+    max-height: 90vh;
+
+}
+
+/*NOWSHOWING-- POSTERS AND STUFF*/
+
+h1 {
+    padding-left: 2rem;
+}
+
+.poster-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 2rem auto;
+    object-fit: cover;
+    object-position: center;
+
+}
+
+.poster-container .folder {
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.poster-container .folder img {
+    display: block;
+    width: 100%;
+    flex: 1;              /* take whatever space the title doesn't use */
+    min-height: 0;        /* lets the image shrink instead of overflowing */
+    object-fit: cover;
+    object-position: center;
+}
+
+.titles {
+    flex: 0 0 48px;       /* fixed height: never grow, never shrink */
+    display: flex;
+    align-items: center;  /* vertically center the text in its area */
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;     /* clip long titles instead of resizing the box */
+}
+
+
+/* MODAL STUFF--------------*/
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;                         /* top/right/bottom/left: 0 */
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.7);   /* translucent background only */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    width: 90vw;          /* fixed size, no longer depends on the photo */
+    height: 90vh;
+    max-width: 1200px;    /* optional: stops it getting huge on wide screens */
+}
+
+.photo-box {
+    flex: 1;
+    min-width: 0;         /* lets the box shrink instead of overflowing */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-box img {
+    max-width: 100%;
+    max-height: 100%;     /* changed from 90vh: now relative to the photo box */
+    object-fit: contain;
+}
+
+
+
+.desc-placeholder {
+    max-width: 100%;
+    opacity: 0.6;
+}
+
+#folderDesc {
+    color: black;
+}
+
+/*BUTTON BAR*/
+
+.side-panel {
+    flex: 0 0 260px;          /* the constant-width column (moved from .desc-box) */
+    align-self: center;       /* centered vertically */
+    height: 60%;              /* fixed height for the whole stack */
+    display: flex;
+    flex-direction: column;   /* stack top to bottom */
+    gap: 12px;
+}
+
+.buttonbar {
+    text-align: center;
+    flex: none;               /* height comes from its content */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: white;
+}
+
+.desc-box {
+    flex: 1;                  /* takes the remaining height under the bar */
+    min-height: 0;            /* lets overflow-y scroll instead of stretching */
+    overflow-y: auto;
+    padding: 16px;
+    background: white;
+}
+
+
+/* MODAL BUTTONS */
+
+.modalbtn:hover {
+  border-color: #a2a6ac #455d5e #3a74d1;
+  background-color: #4a4b4b;
+}
+
+.modalbtn:focus {
+  border-color: #ffe2c2;
+  box-shadow: rgba(250, 199, 148, 0.5) 0 0 3px 2px;
+  outline: 0;
+}
+
+/*BUTTONS*/
+
+.playbtn, .modalbtn{
+    color: black;
+    font-family: inherit;
+
+}
+
+
+
+/*FOOTER*/
+
+footer {
+    width: 100%;
+    height: 3rem; 
+    align-items: center;
+    display: flex;
+    gap: 1rem; 
+    padding: 0 1rem;
+    bottom: 0;
+
+}
+
+footer a {
+    margin-left: auto;
+}
+
+footer img {
+    height: 3rem;
+    width: auto;
+    display: block;
+}
+
+@media (max-width: 700px) {
+    .modal-content { flex-direction: column; }
+    .photo-box { flex: 1;
+                order: -1; }
+    .desc-box { flex: 0 0 25%; width: 75%; }
+}

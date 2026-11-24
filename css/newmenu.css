@@ -1,0 +1,226 @@
+  /* ============================================================
+     EDIT HERE: colours, fonts and spacing live in these variables
+     ============================================================ */
+
+    /* 
+    --sapphire: #72b0ab;
+    --arctic: #bcdddc;
+    --lace: #ffedd1;
+    --bubblegum: #fdc1b4;
+    --ballet: #fe9179;
+    --sage: #cfb97e;
+    --pistachio: #b89d47;
+    --spruce: #355e58;
+    --peacock: #053229;
+
+    */ 
+  :root {
+    --sapphire: #72b0ab;
+    --arctic: #bcdddc;
+    --lace: #ffedd1;
+    --bubblegum: #fdc1b4;
+    --ballet: #fe9179;
+    --sage: #cfb97e;
+    --pistachio: #b89d47;
+    --spruce: #355e58;
+    --peacock: #053229;
+
+    --stripe-a: var(--arctic);        /* sea-glass mint (header is stripe 1) */
+    --stripe-b: var(--ballet);        /* soft peach                          */
+    --ink: #23332f;             /* main text                           */
+    --ink-soft: #4f635d;        /* descriptions                        */
+    --accent: #b5482f;          /* links + focus ring                  */
+
+    --stripe-height: 13rem;     /* minimum height of each stripe       */
+    --stripe-padding: 3.5rem;   /* space above/below the content       */
+    --item-gap: 3rem;           /* space between items side by side    */
+    --content-width: 88rem;     /* width of the whole content column   */
+
+    --font-display: "Young Serif", Georgia, serif;
+    --font-body: "Karla", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+
+  body {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--ink);
+    background-color: var(--lace);
+
+    
+  }
+
+  .menu {
+    max-width: 100rem;
+    margin: 2rem auto;
+    border-radius: 1.25rem;
+    overflow: hidden;  /*to stop the scrollbar from acting up during the slide in animation*/
+  }
+
+  /* ---------- Stripes (header, sections and footer all share these) ---------- */
+  .stripe {
+   
+    display: flex;
+    align-items: center;
+    min-height: var(--stripe-height);
+    padding: var(--stripe-padding) 1.5rem;
+  }
+  .stripe:nth-child(odd)  { background: var(--stripe-a); }
+  .stripe:nth-child(even) { background: var(--stripe-b); }
+
+  .stripe__inner {
+    width: 100%;
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+
+  /* ---------- Header: title sits in the upper-left ---------- */
+  .stripe--header { align-items: flex-start; }
+  .stripe--header h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.8rem, 7vw, 4.5rem);
+    line-height: 1.05;
+  }
+  .stripe--header p {
+    max-width: 34rem;
+    margin-top: 0.75rem;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Items: several per stripe ---------- */
+  /* Every item in a stripe sits side by side in ONE row, sharing the width equally */
+  .items {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: var(--item-gap);
+  }
+
+  /* name ........ meta, like a printed menu */
+  .item__head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+  .item__name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.35rem;
+    line-height: 1.2;
+  }
+  .item__leader {
+    flex: 1;
+    min-width: 0.75rem;
+    border-bottom: 2px dotted var(--ink-soft);
+    opacity: 0.5;
+    transform: translateY(-0.25rem);
+  }
+  .item__meta {
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .item__desc {
+    margin-top: 0.4rem;
+    color: var(--ink-soft);
+  }
+
+  .item__desc img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fits the box perfectly and crops overflow */
+  }
+
+  .item__link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .item__link:hover { text-decoration: none; }
+  .item__link:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+/*.footer {
+    width: 100%;
+    max-width: var(--content-width);
+    margin: 0 auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    align-items: center;
+  }*/
+
+.footer {
+  width: fit-content;          /* shrink to the text instead of filling the row */
+  margin: 0 auto;              /* centre the tab */
+  padding: 0.6rem 1.5rem;
+  background: #c5c5c5;
+  color: var(--ink-soft);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.85rem;
+  border-radius: 0 0 0.75rem 0.75rem;   /* rounded bottom corners, like a tab hanging off the last stripe */
+}
+
+/*AUDIO WALL OF BUTTONS*/
+
+.wall_buttons {
+  background-color: var(--pistachio);
+  padding: 10px;
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /*centers each .row horizontally within .wall_buttons */
+  gap: 1rem; /* space between rows (vertically) */
+  position: absolute;
+
+  margin: 2rem auto;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  opacity: 0;
+  width: max-content /*shrinks the container to match content*/
+}
+
+.revealbtn {
+  margin: 2rem auto;
+  border-radius: 1.25rem;
+  font-family: var(--font-primary);
+  background-color: var(--pistachio);
+  color: var(--peacock);
+}
+
+.hidebtn {
+  border-radius: 1.25rem;
+  font-family: var(--font-primary);
+  background-color: var(--accent);
+  color: var(--lace);
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  
+}
+
+.buttonrow {
+  display: flex;
+  justify-content: center; /*centers buttons horizontally within each row */
+  gap: 1rem; /*space between buttons in row */
+}
+
+.playbtn {
+  font-family: var(--font-primary);
+}
+
+/*-------------------AUDIO-------------------*/
+
+  @media (max-width: 560px) {
+    .stripe { padding: 2.5rem 1.25rem; }
+    .items { grid-auto-flow: row; grid-auto-columns: auto; gap: 2rem; }
+    .item__head { flex-wrap: wrap; }
+    .item__leader { display: none; }
+    .item__meta { width: 100%; }
+  }
+
+ 

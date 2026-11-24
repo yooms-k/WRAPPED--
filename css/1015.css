@@ -1,0 +1,171 @@
+  :root {
+    --sapphire: #72b0ab;
+    --arctic: #bcdddc;
+    --lace: #ffedd1;
+    --bubblegum: #fdc1b4;
+    --ballet: #fe9179;
+    --sage: #cfb97e;
+    --pistachio: #b89d47;
+    --spruce: #355e58;
+    --peacock: #053229;
+
+    --ink: #23332f;             /* main text                           */
+    --ink-soft: #4f635d;        /* descriptions                        */
+    --accent: #b5482f;          /* links + focus ring                  */
+
+    --font-display: "Young Serif", Georgia, serif;
+    --font-body: "Karla", system-ui, sans-serif;
+  }
+
+/* ---------- 1. THE SCROLL CONTAINER ---------- */
+
+.scroll-container {
+  /* A variable so the container and the sections can share ONE number.
+     400px is just a comfortable "window" size for learning; change it freely. */
+  --container-height: 100vh;
+
+  /* RULE 1: a fixed height. Without it the box grows to fit its content,
+     so nothing is hidden and nothing can scroll. */
+  height: var(--container-height);
+
+  /* A border so you can see where the "window" is. */
+  border: 2px solid var(--peacock);
+
+  /* Makes padding/border count INSIDE the height instead of adding to it. */
+  box-sizing: border-box;
+}
+
+/* RULE 2: turn on scrolling. auto = show a scrollbar only if content is taller. */
+.scroll-y {
+  overflow-y: auto;
+}
+
+/* Horizontal version (used by the 'axis: x' example). */
+.scroll-x {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.text {
+    display: inline-block; /*lets the text stack below the squares*/
+    transform-origin: left center;
+    text-align: center;
+}
+
+/* ---------- 2. THE CONTENT INSIDE ---------- */
+
+/* RULE 3: the content must be taller than the container.
+   Each section is exactly one container-height tall, so 4 sections =
+   4 screens of scrolling. */
+.scroll-section {
+  height: var(--container-height);
+  box-sizing: border-box; /* so the padding below doesn't make it taller than 400px */
+}
+
+.padded {
+  padding: 1rem;
+}
+
+
+/* ---------- 3. LAYOUT HELPERS ---------- */
+
+/* A flex row fills the section so we can center things vertically. */
+.row {
+  display: flex;
+  align-items: center;   /* vertical centering */
+  gap: 1rem;             /* space between items in the row */
+  width: 100%;
+  height: 100%;
+}
+
+.shapes {
+    display: flex;
+    gap: 1rem; 
+    padding: 1rem; 
+}
+
+.centered {
+  justify-content: center; /* horizontal centering, only works if your box is a flex box */
+}
+
+
+/* ---------- 4. THE THINGS BEING ANIMATED ---------- */
+
+/* An empty div has no size and no colour, so it's invisible.
+   It needs BOTH a width/height and a background. */
+.square {
+  width: 3rem;
+  height: 3rem;
+  background: var(--bubblegum);
+}
+
+.circle {
+  width: 3rem;
+  height: 3rem;
+  background: var(--ballet);
+  border-radius: 50%; /* 50% rounds all corners fully, which makes a circle */
+}
+
+
+
+  /* =========================================================
+     2. THE TWO COLUMNS
+     ========================================================= */
+  .layout {
+    display: flex;
+    /* VERY IMPORTANT. Flex items stretch to the full row height by default.
+       If the image column stretched, it would be as tall as ALL the steps
+       and sticky would have nothing to do. flex-start lets it keep its own
+       height, so it has room to slide along inside the tall row. */
+    align-items: flex-start;
+  }
+
+  /* ---- Left: the sticky image column ---- */
+  .media-col {
+    position: sticky;       /* pin it...                                   */
+    top: 0;                 /* ...to the top of the scroll window          */
+    flex: 0 0 50%;          /* don't grow, don't shrink, stay 50% wide     */
+    height: var(--container-height);   /* exactly one window tall          */
+    /* A sticky element also counts as "positioned", so the absolutely
+       placed images below are measured from THIS box. */
+  }
+
+  /* All images are stacked on top of each other in the same spot. */
+  .media {
+    position: absolute;
+    inset: 0;               /* shorthand for top/right/bottom/left: 0      */
+    opacity: 0;             /* hidden by default                           */
+    display: grid;
+    place-items: center;    /* centre the placeholder label                */
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  /* The first one starts visible so the page doesn't open empty. */
+  .media:first-child { opacity: 1; }
+
+  /* When you use real photos, put an <img> inside each .media: */
+  .media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* fill the box without squashing the photo    */
+  }
+
+  /* Placeholder colours (delete these once you have real images) */
+  .media:nth-child(1) { background: var(--arctic); }
+  .media:nth-child(2) { background: var(--ballet); }
+  .media:nth-child(3) { background: var(--pistachio); }
+
+  /* ---- Right: the scrolling text steps ---- */
+  .steps-col {
+    flex: 1;                /* take the remaining width */
+  }
+
+  .step {
+    min-height: var(--container-height);  /* each step is one window tall */
+    box-sizing: border-box;               /* padding counts INSIDE that height */
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;              /* centre the text vertically */
+  }
